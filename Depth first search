@@ -1,0 +1,17 @@
+#include <stdio.h>
+
+int visited[10];
+
+void dfs(int g[3][3],int i){
+    printf("%d ",i);
+    visited[i]=1;
+
+    for(int j=0;j<3;j++)
+        if(g[i][j] && !visited[j])
+            dfs(g,j);
+}
+
+int main(){
+    int g[3][3]={{0,1,1},{1,0,1},{1,1,0}};
+    dfs(g,0);
+}
