@@ -1,0 +1,32 @@
+#include <stdio.h>
+#define INF 999
+
+int main(){
+    int n=4;
+    int cost[4][4] = {
+        {INF,1,2,5},
+        {INF,INF,INF,4},
+        {INF,INF,INF,2},
+        {INF,INF,INF,INF}
+    };
+
+    int dist[4], path[4];
+    dist[3]=0;
+
+    for(int i=n-2;i>=0;i--){
+        dist[i]=INF;
+        for(int j=i+1;j<n;j++){
+            if(cost[i][j]!=INF && cost[i][j]+dist[j]<dist[i]){
+                dist[i]=cost[i][j]+dist[j];
+                path[i]=j;
+            }
+        }
+    }
+
+    printf("Path: 0 ");
+    int i=0;
+    while(i!=3){
+        i=path[i];
+        printf("%d ",i);
+    }
+}
