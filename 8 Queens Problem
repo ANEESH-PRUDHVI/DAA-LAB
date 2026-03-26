@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int board[8];
+
+int safe(int r,int c){
+    for(int i=0;i<r;i++)
+        if(board[i]==c || abs(board[i]-c)==abs(i-r))
+            return 0;
+    return 1;
+}
+
+void solve(int r){
+    if(r==8){
+        for(int i=0;i<8;i++)
+            printf("%d ",board[i]);
+        printf("\n");
+        return;
+    }
+
+    for(int c=0;c<8;c++){
+        if(safe(r,c)){
+            board[r]=c;
+            solve(r+1);
+        }
+    }
+}
+
+int main(){
+    solve(0);
+}
